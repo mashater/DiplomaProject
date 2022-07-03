@@ -1,4 +1,4 @@
-package tests;
+package tests.gui;
 
 import configurations.ReadProperties;
 import org.testng.annotations.Test;
