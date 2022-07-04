@@ -10,6 +10,7 @@ import org.testng.annotations.BeforeTest;
 import static io.restassured.RestAssured.given;
 
 public class BaseAPITest {
+    public int booking_id;
     public Booking expectedBooking;
     public BookingHelper bookingHelper;
 
@@ -18,7 +19,8 @@ public class BaseAPITest {
         RestAssured.baseURI = "http://restful-booker.herokuapp.com";
 
         RestAssured.requestSpecification = given()
-                .header(HTTP.CONTENT_TYPE, ContentType.JSON);
+                .header(HTTP.CONTENT_TYPE, ContentType.JSON)
+                .auth().preemptive().basic("admin", "password123");
 
         expectedBooking =
                 Booking.builder()

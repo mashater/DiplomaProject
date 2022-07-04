@@ -1,20 +1,21 @@
 package tests.api;
 
 import configuration.Endpoints;
+import io.restassured.mapper.ObjectMapperType;
 import models.Booking;
 import org.apache.http.HttpStatus;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
-
 import static io.restassured.RestAssured.given;
-import static org.hamcrest.CoreMatchers.equalTo;
 
 public class BookingTest extends BaseAPITest {
+    public Booking booking;
+    public int bookingId;
 
     @Test
     public void createBookingTest() {
-
-        Booking newBooking = Booking.builder()
+        Booking booking = Booking.builder()
                 .firstname("Jim")
                 .lastname("Brown")
                 .totalprice(111)
@@ -22,7 +23,7 @@ public class BookingTest extends BaseAPITest {
                 .additionalneeds("Breakfast")
                 .build();
 
-        given()
+        bookingId = given()
                 .body(String.format("{\n" +
                         "  \"firstname\" : \"Jim\",\n" +
                         "  \"lastname\" : \"Brown\",\n" +
@@ -38,7 +39,10 @@ public class BookingTest extends BaseAPITest {
                 .post(Endpoints.POST_CREATE_BOOKING)
                 .then()
                 .log().body()
-                .statusCode(HttpStatus.SC_OK);
-    }
+                .statusCode(HttpStatus.SC_OK)
+                .extract().jsonPath().get("bookingid");
 
+        Assert.assertEquals(booking.getLastname(), "Brown");
+        Assert.assertEquals(booking.getAdditionalneeds(), "Breakfast");
+    }
 }
