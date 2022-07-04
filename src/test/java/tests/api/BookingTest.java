@@ -1,7 +1,7 @@
 package tests.api;
 
-import configuration.Endpoints;
-import io.restassured.mapper.ObjectMapperType;
+import baseEntities.BaseAPITest;
+import configurations.Endpoints;
 import models.Booking;
 import org.apache.http.HttpStatus;
 import org.testng.Assert;

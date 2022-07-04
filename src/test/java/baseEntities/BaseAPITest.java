@@ -1,4 +1,4 @@
-package tests.api;
+package baseEntities;
 
 import helpers.BookingHelper;
 import io.restassured.RestAssured;

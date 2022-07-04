@@ -1,6 +1,6 @@
 package helpers;
 
-import configuration.Endpoints;
+import configurations.Endpoints;
 import io.restassured.response.Response;
 import models.Booking;
 import org.apache.http.HttpStatus;
