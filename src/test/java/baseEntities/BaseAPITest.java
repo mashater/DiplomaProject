@@ -10,7 +10,7 @@ import org.testng.annotations.BeforeTest;
 import static io.restassured.RestAssured.given;
 
 public class BaseAPITest {
-    public int booking_id;
+    public int bookingId;
     public Booking expectedBooking;
     public BookingHelper bookingHelper;
 

@@ -11,7 +11,6 @@ import static io.restassured.RestAssured.given;
 
 public class BookingTest extends BaseAPITest {
     public Booking booking;
-    public int bookingId;
 
     @Test
     public void createBookingTest() {
@@ -44,5 +43,10 @@ public class BookingTest extends BaseAPITest {
 
         Assert.assertEquals(booking.getLastname(), "Brown");
         Assert.assertEquals(booking.getAdditionalneeds(), "Breakfast");
+    }
+
+    @Test
+    public void updateBookingTest() {
+
     }
 }
