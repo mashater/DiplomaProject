@@ -5,13 +5,15 @@ import org.testng.annotations.Test;
 import pages.AddProjectPage;
 import pages.LoginPage;
 import pages.AllProjectsPage;
+import steps.NavigationStep;
 
 import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
 public class loginAndCreate {
 
-    @Test
+    @Test // пробный тест
     public void successLogin() {
     open(ReadProperties.getUrlUi());
 
@@ -29,4 +31,13 @@ public class loginAndCreate {
     addProjectPage.projectCodeInputLocator.setValue("as");
     addProjectPage.createProjectButtonLocator.click();
 
+}
+    @Test  // пробный тест
+    public void DipTest() throws InterruptedException {
+        open("https://app.qase.io/login");
+        NavigationStep navigationStep = new NavigationStep();
+        navigationStep.successLogin();
+        $(".defect-title").click();
+        navigationStep.addCase();
+        Thread.sleep(5000);
 }}
