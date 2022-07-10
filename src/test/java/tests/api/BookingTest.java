@@ -69,7 +69,6 @@ public class BookingTest extends BaseAPITest {
 
         given()
                 .pathParams("bookingid", bookingid)
-                .header("token", token)
                 .when()
                 .put(Endpoints.PUT_UPDATE_BOOKING)
                 .then()
