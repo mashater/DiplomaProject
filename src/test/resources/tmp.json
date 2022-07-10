@@ -1,5 +1,4 @@
 {
-  "bookingid": 1362,
   "booking": {
     "firstname": "Jim",
     "lastname": "Brown",
@@ -12,3 +11,4 @@
     "additionalneeds": "Breakfast"
   }
 }
+

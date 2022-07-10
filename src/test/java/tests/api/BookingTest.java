@@ -11,11 +11,28 @@ import static io.restassured.RestAssured.given;
 
 public class BookingTest extends BaseAPITest {
     public Booking booking;
-    public int bookingId;
+    public int bookingid;
+    public String token;
 
     @Test
+    public void authCreateTokenTest() {
+        token = given()
+                .body(String.format("{\n" +
+                        "    \"username\" : \"admin\",\n" +
+                        "    \"password\" : \"password123\"\n" +
+                        "}"))
+                .when()
+                .post(Endpoints.POST_CREATE_TOKEN)
+                .then()
+                .log().body()
+                .statusCode(HttpStatus.SC_OK)
+                .extract().jsonPath().get("token");
+
+    }
+
+    @Test(dependsOnMethods = "authCreateTokenTest")
     public void createBookingTest() {
-        Booking booking = Booking.builder()
+        booking = Booking.builder()
                 .firstname("Jim")
                 .lastname("Brown")
                 .totalprice(111)
@@ -23,7 +40,7 @@ public class BookingTest extends BaseAPITest {
                 .additionalneeds("Breakfast")
                 .build();
 
-        bookingId = given()
+        bookingid = given()
                 .body(String.format("{\n" +
                         "  \"firstname\" : \"Jim\",\n" +
                         "  \"lastname\" : \"Brown\",\n" +
@@ -42,7 +59,33 @@ public class BookingTest extends BaseAPITest {
                 .statusCode(HttpStatus.SC_OK)
                 .extract().jsonPath().get("bookingid");
 
+        Assert.assertEquals(booking.getFirstname(), "Jim");
         Assert.assertEquals(booking.getLastname(), "Brown");
         Assert.assertEquals(booking.getAdditionalneeds(), "Breakfast");
     }
+
+    @Test(dependsOnMethods = "createBookingTest")
+    public void updateBookingTest() {
+
+        given()
+                .pathParams("bookingid", bookingid)
+                .when()
+                .put(Endpoints.PUT_UPDATE_BOOKING)
+                .then()
+                .statusCode(HttpStatus.SC_OK)
+                .log().body();
+    }
+
+    @Test(dependsOnMethods = "updateBookingTest")
+    public void deleteBookingTest() {
+
+        given()
+                .pathParams("bookingid", bookingid)
+                .when()
+                .delete(Endpoints.DELETE_BOOKING)
+                .then()
+                .statusCode(HttpStatus.SC_CREATED)
+                .log().body();
+    }
 }
+

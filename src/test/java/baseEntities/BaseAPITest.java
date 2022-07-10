@@ -10,9 +10,10 @@ import org.testng.annotations.BeforeTest;
 import static io.restassured.RestAssured.given;
 
 public class BaseAPITest {
-    public int booking_id;
+
     public Booking expectedBooking;
     public BookingHelper bookingHelper;
+    public Booking updatedBooking;
 
     @BeforeTest
     public void setupEnv() {
@@ -20,16 +21,23 @@ public class BaseAPITest {
 
         RestAssured.requestSpecification = given()
                 .header(HTTP.CONTENT_TYPE, ContentType.JSON)
-                .auth().preemptive().basic("admin", "password123");
+                .auth().basic("admin", "password123");
 
-        expectedBooking =
-                Booking.builder()
-                        .firstname("Jim")
-                        .lastname("Brown")
-                        .totalprice(111)
-                        .depositpaid(true)
-                        .additionalneeds("Breakfast")
-                        .build();
+        expectedBooking = Booking.builder()
+                .firstname("Jim")
+                .lastname("Brown")
+                .totalprice(111)
+                .depositpaid(true)
+                .additionalneeds("Breakfast")
+                .build();
+
+        updatedBooking = Booking.builder()
+                .firstname("Andrey")
+                .lastname("Brown")
+                .totalprice(111)
+                .depositpaid(true)
+                .additionalneeds("Breakfast")
+                .build();
 
         bookingHelper = new BookingHelper();
     }
