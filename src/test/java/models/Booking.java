@@ -10,7 +10,7 @@ import java.util.Date;
 @Builder
 @EqualsAndHashCode
 public class Booking {
-    private int id;
+    private int bookingid;
     private String firstname;
     private String lastname;
     private Number totalprice;

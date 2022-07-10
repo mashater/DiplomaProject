@@ -24,9 +24,8 @@ public class BookingHelper {
                 .as(Booking.class);
     }
 
-    public Booking getBooking(int booking_id) {
+    public Booking getBooking() {
         return given()
-                .pathParam("booking_id", booking_id)
                 .get(Endpoints.GET_BOOKING)
                 .then()
                 .assertThat()
@@ -35,9 +34,8 @@ public class BookingHelper {
                 .as(Booking.class);
     }
 
-    public Response getBookingResponse(int booking_id) {
+    public Response getBookingResponse() {
         return given()
-                .pathParam("booking_id", booking_id)
                 .get(Endpoints.GET_BOOKING_IDS);
     }
 }
