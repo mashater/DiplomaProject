@@ -29,9 +29,10 @@ public class BookingTest extends BaseAPITest {
                 .extract().jsonPath().get("token");
 
     }
-    @Test
+
+    @Test(dependsOnMethods = "authCreateTokenTest")
     public void createBookingTest() {
-         booking = Booking.builder()
+        booking = Booking.builder()
                 .firstname("Jim")
                 .lastname("Brown")
                 .totalprice(111)
@@ -63,15 +64,28 @@ public class BookingTest extends BaseAPITest {
         Assert.assertEquals(booking.getAdditionalneeds(), "Breakfast");
     }
 
-    @Test
-    public void deleteBookingTest() {
+    @Test(dependsOnMethods = "createBookingTest")
+    public void updateBookingTest() {
+
         given()
                 .pathParams("bookingid", bookingid)
                 .when()
-                .post(Endpoints.DELETE_BOOKING)
+                .put(Endpoints.PUT_UPDATE_BOOKING)
+                .then()
+                .statusCode(HttpStatus.SC_OK)
+                .log().body();
+    }
+
+    @Test(dependsOnMethods = "updateBookingTest")
+    public void deleteBookingTest() {
+
+        given()
+                .pathParams("bookingid", bookingid)
+                .when()
+                .delete(Endpoints.DELETE_BOOKING)
                 .then()
                 .statusCode(HttpStatus.SC_CREATED)
                 .log().body();
     }
-    }
+}
 

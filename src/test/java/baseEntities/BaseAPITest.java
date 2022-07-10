@@ -13,6 +13,7 @@ public class BaseAPITest {
 
     public Booking expectedBooking;
     public BookingHelper bookingHelper;
+    public Booking updatedBooking;
 
     @BeforeTest
     public void setupEnv() {
@@ -24,6 +25,14 @@ public class BaseAPITest {
 
         expectedBooking = Booking.builder()
                 .firstname("Jim")
+                .lastname("Brown")
+                .totalprice(111)
+                .depositpaid(true)
+                .additionalneeds("Breakfast")
+                .build();
+
+        updatedBooking = Booking.builder()
+                .firstname("Andrey")
                 .lastname("Brown")
                 .totalprice(111)
                 .depositpaid(true)
