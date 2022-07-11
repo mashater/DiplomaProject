@@ -5,12 +5,14 @@ public class ProjectBuilder {
     private String code;
     private String description;
 
+
     public static class Builder {
         private ProjectBuilder newProject;
 
         public Builder() {
             newProject = new ProjectBuilder();
         }
+
         public ProjectBuilder.Builder withName(String name) {
             newProject.name = name;
             return this;

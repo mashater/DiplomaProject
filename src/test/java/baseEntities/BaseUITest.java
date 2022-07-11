@@ -2,13 +2,14 @@ package baseEntities;
 
 import com.codeborne.selenide.Configuration;
 import configurations.ReadProperties;
+import org.testng.ITestResult;
 import org.testng.annotations.*;
 import steps.*;
 import static com.codeborne.selenide.Selenide.closeWebDriver;
 import static com.codeborne.selenide.Selenide.open;
 
 public class BaseUITest {
-    protected NavigationStep navigationStep;
+    protected LoginStep loginStep;
 
     @BeforeTest
     public void setUp (){
@@ -19,10 +20,11 @@ public class BaseUITest {
         Configuration.timeout = 5000;
 
         open ("/login");
-        navigationStep = new NavigationStep();
-        navigationStep.successLogin();
+        loginStep = new LoginStep();
+        loginStep.successLogin();
     }
 
     @AfterTest
     public void closePage() {closeWebDriver();};
+
 }
