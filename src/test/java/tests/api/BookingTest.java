@@ -1,6 +1,7 @@
 package tests.api;
 
 import baseEntities.BaseAPITest;
+import com.codeborne.selenide.BearerTokenCredentials;
 import configurations.Endpoints;
 import models.Booking;
 import org.apache.http.HttpStatus;
@@ -38,6 +39,7 @@ public class BookingTest extends BaseAPITest {
                 .totalprice(111)
                 .depositpaid(true)
                 .additionalneeds("Breakfast")
+                .token(token)
                 .build();
 
         bookingid = given()
@@ -87,5 +89,6 @@ public class BookingTest extends BaseAPITest {
                 .statusCode(HttpStatus.SC_CREATED)
                 .log().body();
     }
+
 }
 

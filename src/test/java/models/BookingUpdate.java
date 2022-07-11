@@ -9,8 +9,8 @@ import java.util.Date;
 @Data
 @Builder
 @EqualsAndHashCode
-public class Booking {
-    private int bookingid;
+public class BookingUpdate {
+    private int bookingupdateid;
     private String firstname;
     private String lastname;
     private Number totalprice;
