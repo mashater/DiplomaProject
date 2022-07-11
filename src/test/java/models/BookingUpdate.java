@@ -18,5 +18,4 @@ public class BookingUpdate {
     private Date checkin;
     private Date checkout;
     private String additionalneeds;
-    private String token;
 }

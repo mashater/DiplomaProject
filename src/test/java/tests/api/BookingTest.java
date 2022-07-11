@@ -1,8 +1,8 @@
 package tests.api;
 
 import baseEntities.BaseAPITest;
-import com.codeborne.selenide.BearerTokenCredentials;
 import configurations.Endpoints;
+import io.restassured.http.ContentType;
 import models.Booking;
 import org.apache.http.HttpStatus;
 import org.testng.Assert;
@@ -13,25 +13,8 @@ import static io.restassured.RestAssured.given;
 public class BookingTest extends BaseAPITest {
     public Booking booking;
     public int bookingid;
-    public String token;
 
     @Test
-    public void authCreateTokenTest() {
-        token = given()
-                .body(String.format("{\n" +
-                        "    \"username\" : \"admin\",\n" +
-                        "    \"password\" : \"password123\"\n" +
-                        "}"))
-                .when()
-                .post(Endpoints.POST_CREATE_TOKEN)
-                .then()
-                .log().body()
-                .statusCode(HttpStatus.SC_OK)
-                .extract().jsonPath().get("token");
-
-    }
-
-    @Test(dependsOnMethods = "authCreateTokenTest")
     public void createBookingTest() {
         booking = Booking.builder()
                 .firstname("Jim")
@@ -39,7 +22,6 @@ public class BookingTest extends BaseAPITest {
                 .totalprice(111)
                 .depositpaid(true)
                 .additionalneeds("Breakfast")
-                .token(token)
                 .build();
 
         bookingid = given()
@@ -68,9 +50,21 @@ public class BookingTest extends BaseAPITest {
 
     @Test(dependsOnMethods = "createBookingTest")
     public void updateBookingTest() {
-
         given()
                 .pathParams("bookingid", bookingid)
+                .cookie("token", token)
+                .contentType(ContentType.JSON)
+                .body(String.format("{\n" +
+                        "  \"firstname\" : \"Jim2\",\n" +
+                        "  \"lastname\" : \"Brown1\",\n" +
+                        "  \"totalprice\" : 111,\n" +
+                        "  \"depositpaid\" : true,\n" +
+                        "  \"bookingdates\" : {\n" +
+                        "    \"checkin\" : \"2018-01-01\",\n" +
+                        "    \"checkout\" : \"2019-01-01\"\n" +
+                        "  },\n" +
+                        "  \"additionalneeds\" : \"Breakfast\"\n" +
+                        "}"))
                 .when()
                 .put(Endpoints.PUT_UPDATE_BOOKING)
                 .then()
@@ -83,12 +77,13 @@ public class BookingTest extends BaseAPITest {
 
         given()
                 .pathParams("bookingid", bookingid)
+                .cookie("token", token)
+                .contentType(ContentType.JSON)
                 .when()
                 .delete(Endpoints.DELETE_BOOKING)
                 .then()
                 .statusCode(HttpStatus.SC_CREATED)
                 .log().body();
     }
-
 }
 
