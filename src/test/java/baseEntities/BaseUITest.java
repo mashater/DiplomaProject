@@ -16,8 +16,8 @@ public class BaseUITest {
         Configuration.baseUrl = ReadProperties.getUrlUi();
         Configuration.browser = ReadProperties.browserName();
         Configuration.browserSize = "1920x1080";
-        //Configuration.fastSetValue = true;
-        Configuration.timeout = 5000;
+        Configuration.fastSetValue = true;
+        Configuration.timeout = 4000;
 
         open ("/login");
         loginStep = new LoginStep();
