@@ -19,29 +19,29 @@ public class RequestInTest {
         RestAssured.baseURI = "http://restful-booker.herokuapp.com";
 
         // Setup endpoint
-        String endpoint = "/booking";  // настройка endpoint
+        String endpoint = "/booking";
 
         // Setup request Object
-        RequestSpecification httpRequest = given();  // как в матем.задаче ДАНО
+        RequestSpecification httpRequest = given();
 
         // Setup Response Object
-        Response response = httpRequest.request(Method.GET, endpoint);   //запрашиваем структура When
+        Response response = httpRequest.request(Method.GET, endpoint);
 
         // Get Response Status
         int statusCode = response.getStatusCode();
         System.out.println("Status Code: " + statusCode);
         Assert.assertEquals(statusCode, 200);
-        Assert.assertEquals(statusCode, HttpStatus.SC_OK);    // проверяем статус
+        Assert.assertEquals(statusCode, HttpStatus.SC_OK);
 
         // Get Response Body
         String responseBody = response.getBody().asString();
-        System.out.println("Response: " + responseBody);     // получение тела и вывод его на экран
+        System.out.println("Response: " + responseBody);
     }
 
     @Test
     public void simpleShortApiTest() {
         // Setup RestAssured
-        RestAssured.baseURI = "http://restful-booker.herokuapp.com";   // настройка REST
+        RestAssured.baseURI = "http://restful-booker.herokuapp.com";
 
         // Setup endpoint
         String endpoint = "/booking";  // настройка endpoint

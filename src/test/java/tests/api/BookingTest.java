@@ -11,18 +11,10 @@ import org.testng.annotations.Test;
 import static io.restassured.RestAssured.given;
 
 public class BookingTest extends BaseAPITest {
-    public Booking booking;
     public int bookingid;
 
     @Test
     public void createBookingTest() {
-        booking = Booking.builder()
-                .firstname("Jim")
-                .lastname("Brown")
-                .totalprice(111)
-                .depositpaid(true)
-                .additionalneeds("Breakfast")
-                .build();
 
         bookingid = given()
                 .body(String.format("{\n" +
@@ -43,9 +35,9 @@ public class BookingTest extends BaseAPITest {
                 .statusCode(HttpStatus.SC_OK)
                 .extract().jsonPath().get("bookingid");
 
-        Assert.assertEquals(booking.getFirstname(), "Jim");
-        Assert.assertEquals(booking.getLastname(), "Brown");
-        Assert.assertEquals(booking.getAdditionalneeds(), "Breakfast");
+        Assert.assertEquals(expectedBooking.getFirstname(), "Jim");
+        Assert.assertEquals(expectedBooking.getLastname(), "Brown");
+        Assert.assertEquals(expectedBooking.getAdditionalneeds(), "Breakfast");
     }
 
     @Test(dependsOnMethods = "createBookingTest")
@@ -55,8 +47,8 @@ public class BookingTest extends BaseAPITest {
                 .cookie("token", token)
                 .contentType(ContentType.JSON)
                 .body(String.format("{\n" +
-                        "  \"firstname\" : \"Jim2\",\n" +
-                        "  \"lastname\" : \"Brown1\",\n" +
+                        "  \"firstname\" : \"James\",\n" +
+                        "  \"lastname\" : \"Brown\",\n" +
                         "  \"totalprice\" : 111,\n" +
                         "  \"depositpaid\" : true,\n" +
                         "  \"bookingdates\" : {\n" +
@@ -70,6 +62,30 @@ public class BookingTest extends BaseAPITest {
                 .then()
                 .statusCode(HttpStatus.SC_OK)
                 .log().body();
+
+        Assert.assertEquals(updatedBooking.getFirstname(), "James");
+        Assert.assertEquals(updatedBooking.getLastname(), "Brown");
+    }
+
+    @Test
+    public void partialUpdateBookingTest() {
+
+        given()
+                .pathParam("bookingid", bookingid)
+                .cookie("token", token)
+                .contentType(ContentType.JSON)
+                .body(String.format("{\n" +
+                        "    \"firstname\" : \"James\",\n" +
+                        "    \"lastname\" : \"Brown\"\n" +
+                        "}"))
+                .when()
+                .patch(Endpoints.PATCH_PARTIAL_UPDATE_BOOKING)
+                .then()
+                .statusCode(HttpStatus.SC_OK)
+                .log().body();
+
+        Assert.assertEquals(updatedBooking.getFirstname(), "James");
+        Assert.assertEquals(updatedBooking.getLastname(), "Brown");
     }
 
     @Test(dependsOnMethods = "updateBookingTest")
@@ -85,5 +101,47 @@ public class BookingTest extends BaseAPITest {
                 .statusCode(HttpStatus.SC_CREATED)
                 .log().body();
     }
+
+    @Test(dependsOnMethods = "deleteBookingTest")
+    public void negativeExpectedStatusDeleteBookingTest() {
+
+        given()
+                .pathParams("bookingid", bookingid)
+                .cookie("token", token)
+                .contentType(ContentType.JSON)
+                .when()
+                .get(Endpoints.GET_BOOKING)
+                .then()
+                .statusCode(HttpStatus.SC_CREATED)
+                .log().body();
+    }
+
+    @Test
+    public void negativeUpdateBookingTest() {
+        given()
+                .pathParams("bookingid", bookingid)
+                .cookie("token", token)
+                .contentType(ContentType.JSON)
+                .body(String.format("{\n" +
+                        "  \"firstname\" : \"Andrey\",\n" +
+                        "  \"lastname\" : \"Next\",\n" +
+                        "  \"totalprice\" : 111,\n" +
+                        "  \"depositpaid\" : true,\n" +
+                        "  \"bookingdates\" : {\n" +
+                        "    \"checkin\" : \"2018-01-01\",\n" +
+                        "    \"checkout\" : \"2019-01-01\"\n" +
+                        "  },\n" +
+                        "  \"additionalneeds\" : \"Breakfast\"\n" +
+                        "}"))
+                .when()
+                .put(Endpoints.PUT_UPDATE_BOOKING)
+                .then()
+                .statusCode(HttpStatus.SC_OK)
+                .log().body();
+
+        Assert.assertEquals(updatedBooking.getFirstname(), "Andrey");
+        Assert.assertEquals(updatedBooking.getLastname(), "Next");
+    }
+
 }
 
