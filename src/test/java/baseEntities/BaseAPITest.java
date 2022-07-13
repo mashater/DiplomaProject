@@ -7,6 +7,7 @@ import io.restassured.http.ContentType;
 import models.Booking;
 import org.apache.http.HttpStatus;
 import org.apache.http.protocol.HTTP;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeTest;
 
 import static io.restassured.RestAssured.given;
@@ -18,7 +19,7 @@ public class BaseAPITest {
     public Booking updatedBooking;
     public String token;
 
-    @BeforeTest
+    @BeforeClass
     public void setupEnv() {
         RestAssured.baseURI = "http://restful-booker.herokuapp.com";
 

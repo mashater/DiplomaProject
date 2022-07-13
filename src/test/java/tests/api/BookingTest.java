@@ -2,6 +2,7 @@ package tests.api;
 
 import baseEntities.BaseAPITest;
 import configurations.Endpoints;
+import io.qameta.allure.Feature;
 import io.restassured.http.ContentType;
 import org.apache.http.HttpStatus;
 import org.testng.Assert;
@@ -12,6 +13,7 @@ import static io.restassured.RestAssured.given;
 public class BookingTest extends BaseAPITest {
     public int bookingid;
 
+    @Feature("NFE test")
     @Test
     public void createBookingTest() {
 
@@ -39,6 +41,7 @@ public class BookingTest extends BaseAPITest {
         Assert.assertEquals(expectedBooking.getAdditionalneeds(), "Breakfast");
     }
 
+    @Feature("NFE test")
     @Test(dependsOnMethods = "createBookingTest")
     public void updateBookingTest() {
         given()
@@ -66,6 +69,7 @@ public class BookingTest extends BaseAPITest {
         Assert.assertEquals(updatedBooking.getLastname(), "Brown");
     }
 
+    @Feature("NFE test")
     @Test
     public void partialUpdateBookingTest() {
 
@@ -87,6 +91,7 @@ public class BookingTest extends BaseAPITest {
         Assert.assertEquals(updatedBooking.getLastname(), "Brown");
     }
 
+    @Feature("NFE test")
     @Test(dependsOnMethods = "updateBookingTest")
     public void deleteBookingTest() {
 
@@ -101,6 +106,7 @@ public class BookingTest extends BaseAPITest {
                 .log().body();
     }
 
+    @Feature("NFE test")
     @Test(dependsOnMethods = "deleteBookingTest")
     public void notFoundBookingTest() {
 
@@ -115,8 +121,10 @@ public class BookingTest extends BaseAPITest {
                 .log().body();
     }
 
+    @Feature("AFE test")
     @Test
     public void negativeUpdateBookingTest() {
+
         given()
                 .pathParams("bookingid", bookingid)
                 .cookie("token", token)
