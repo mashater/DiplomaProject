@@ -4,7 +4,7 @@ import com.codeborne.selenide.SelenideElement;
 
 import static com.codeborne.selenide.Selenide.$;
 
-public class NewEmptyProjectPage {
+public class AddCasesAndSuitesPage {
 
     public SelenideElement noSuitesAndCasesMassageLocator = $(".no-project");
     public SelenideElement createSuiteButtonLocator = $("#create-suite-button");
