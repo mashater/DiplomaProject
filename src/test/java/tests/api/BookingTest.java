@@ -102,7 +102,7 @@ public class BookingTest extends BaseAPITest {
     }
 
     @Test(dependsOnMethods = "deleteBookingTest")
-    public void negativeExpectedStatusDeleteBookingTest() {
+    public void notFoundBookingTest() {
 
         given()
                 .pathParams("bookingid", bookingid)
