@@ -46,7 +46,7 @@ public class BaseAPITest {
                 .build();
 
         updatedBooking = Booking.builder()
-                .firstname("Andrey")
+                .firstname("James")
                 .lastname("Brown")
                 .totalprice(111)
                 .depositpaid(true)
