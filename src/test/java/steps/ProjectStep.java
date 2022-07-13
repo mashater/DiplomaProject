@@ -15,6 +15,7 @@ public class ProjectStep extends BaseUIStep {
 
         allProjectsPage.getCreateNewProjectButton().click();
         addProjectPage.getProjectNameInput().sendKeys(newProject.getName());
+        addProjectPage.getProjectCodeInput().clear();
         addProjectPage.getProjectCodeInput().sendKeys(newProject.getCode());
         addProjectPage.getDescriptionInput().sendKeys(newProject.getDescription());
         addProjectPage.getCreateProjectButton().click();
@@ -22,13 +23,13 @@ public class ProjectStep extends BaseUIStep {
         return allProjectsPage;
     }
 
-    public AddProjectPage addProjectWithIncorrectData(ProjectBuilder newProject1){
+    public AddProjectPage addProjectWithIncorrectData(ProjectBuilder newProject){
 
-        allProjectsPage.openPageByUrl();
         allProjectsPage.getCreateNewProjectButton().click();
-        addProjectPage.getProjectNameInput().sendKeys(newProject1.getName());
-        addProjectPage.getProjectCodeInput().sendKeys(newProject1.getCode());
-        addProjectPage.getDescriptionInput().sendKeys(newProject1.getDescription());
+        addProjectPage.getProjectNameInput().sendKeys(newProject.getName());
+        addProjectPage.getProjectCodeInput().clear();
+        addProjectPage.getProjectCodeInput().sendKeys(newProject.getCode());
+        addProjectPage.getDescriptionInput().sendKeys(newProject.getDescription());
         addProjectPage.getCreateProjectButton().click();
         return addProjectPage;
     }

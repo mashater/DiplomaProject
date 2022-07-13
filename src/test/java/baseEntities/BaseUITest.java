@@ -2,6 +2,7 @@ package baseEntities;
 
 import com.codeborne.selenide.Configuration;
 import configurations.ReadProperties;
+import org.openqa.selenium.PageLoadStrategy;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
 import steps.*;
@@ -17,7 +18,9 @@ public class BaseUITest {
         Configuration.browser = ReadProperties.browserName();
         Configuration.browserSize = "1920x1080";
         Configuration.fastSetValue = true;
-        Configuration.timeout = 4000;
+        Configuration.timeout = 6000;
+        Configuration.pageLoadStrategy = PageLoadStrategy.EAGER.toString();
+
 
         open ("/login");
         loginStep = new LoginStep();
