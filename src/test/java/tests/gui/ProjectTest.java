@@ -59,7 +59,7 @@ public class ProjectTest extends BaseUITest {
         $("#inputTitle").click();
         $("#inputTitle").setValue("Updated");
         $("input[id=fileupload]").uploadFile(new File("src/test/resources/updated-stamp.jpg"));
-        Thread.sleep(6000);
+        Thread.sleep(12000);
         $("[id='update']").click();
         Thread.sleep(6000);
 
