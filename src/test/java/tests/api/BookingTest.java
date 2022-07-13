@@ -3,7 +3,6 @@ package tests.api;
 import baseEntities.BaseAPITest;
 import configurations.Endpoints;
 import io.restassured.http.ContentType;
-import models.Booking;
 import org.apache.http.HttpStatus;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -112,7 +111,7 @@ public class BookingTest extends BaseAPITest {
                 .when()
                 .get(Endpoints.GET_BOOKING)
                 .then()
-                .statusCode(HttpStatus.SC_CREATED)
+                .statusCode(HttpStatus.SC_NOT_FOUND)
                 .log().body();
     }
 
