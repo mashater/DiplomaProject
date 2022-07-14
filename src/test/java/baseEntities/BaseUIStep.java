@@ -9,6 +9,7 @@ public class BaseUIStep {
     protected AddCasesAndSuitesPage addCasesAndSuitesPage;
     protected CreateCasePage createCasePage;
     protected WorkspacePage workspacePage;
+    protected InviteNewUserPage inviteNewUserPage;
 
 
     public BaseUIStep() {
@@ -18,5 +19,6 @@ public class BaseUIStep {
         addCasesAndSuitesPage = new AddCasesAndSuitesPage();
         createCasePage = new CreateCasePage();
         workspacePage = new WorkspacePage();
+        inviteNewUserPage = new InviteNewUserPage();
     }
 }
