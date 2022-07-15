@@ -10,15 +10,15 @@ public class AddCasesAndSuitesPage {
     public SelenideElement createSuiteButtonLocator = $("#create-suite-button");
     public SelenideElement createCaseButtonLocator = $("#create-case-button");
 
-    public SelenideElement getNoSuitesAndCasesMassage(){
+    public SelenideElement getNoSuitesAndCasesMassage() {
         return noSuitesAndCasesMassageLocator;
     }
 
-    public SelenideElement getCreateSuiteButton(){
+    public SelenideElement getCreateSuiteButton() {
         return createSuiteButtonLocator;
     }
 
-    public SelenideElement getCreateCaseButton(){
+    public SelenideElement getCreateCaseButton() {
         return createCaseButtonLocator;
     }
 }

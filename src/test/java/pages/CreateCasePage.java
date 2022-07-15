@@ -27,34 +27,6 @@ public class CreateCasePage {
         return caseDescriptionInputLocator;
     }
 
-    public SelenideElement getCaseStatusSelect() {
-        return caseStatusSelectLocator;
-    }
-
-    public SelenideElement getCaseSeveritySelect() {
-        return caseSeveritySelectLocator;
-    }
-
-    public SelenideElement getCasePrioritySelect() {
-        return casePrioritySelectLocator;
-    }
-
-    public SelenideElement getCaseTypeSelect() {
-        return caseTypeSelectLocator;
-    }
-
-    public SelenideElement getCaseBehaviorSelect() {
-        return caseBehaviorSelectLocator;
-    }
-
-    public SelenideElement getCaseAutomationSelect() {
-        return caseAutomationSelectLocator;
-    }
-
-    public SelenideElement getCaseAddAttachmentButton() {
-        return caseAddAttachmentButtonLocator;
-    }
-
     public SelenideElement getCaseSaveButton() {
         return caseSaveButtonLocator;
     }
