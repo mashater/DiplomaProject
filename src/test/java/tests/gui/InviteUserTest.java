@@ -3,18 +3,19 @@ package tests.gui;
 import baseEntities.BaseUITest;
 
 import static com.codeborne.selenide.Condition.*;
+
 import models.UserBuilder;
 import org.testng.annotations.Test;
-import pages.WorkspacePage;
-import steps.InviteNewUserStep;
-import steps.NavigationStep;
+import pages.InvitesPage;
+import steps.InviteNewUserFormStep;
 import utils.RandomString;
+
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.open;
 
 public class InviteUserTest extends BaseUITest {
-    NavigationStep navigationStep = new NavigationStep();
-    WorkspacePage workspacePage = new WorkspacePage();
-    InviteNewUserStep inviteNewUserStep = new InviteNewUserStep();
+    InvitesPage invitesPage = new InvitesPage();
+    InviteNewUserFormStep inviteNewUserFormStep = new InviteNewUserFormStep();
 
     @Test
     public void oversizedInputDataTest() {
@@ -23,10 +24,9 @@ public class InviteUserTest extends BaseUITest {
                 .withRoleTitle(RandomString.getRandomString(5))
                 .build();
 
-        navigationStep.navigateToInvitesPage();
-        $(".btn-primary.me-2").shouldBe(visible);
-        $(".btn-primary.me-2").click();
-        inviteNewUserStep.inviteUser(newUser);
+        open("/workspace/invites?page=1");
+        invitesPage.getInviteNewMemberButton().shouldBe(visible).click();
+        inviteNewUserFormStep.inviteUser(newUser);
 
         $("[role='alert']").shouldBe(visible).shouldHave(text("Data is invalid."));
     }
@@ -38,25 +38,23 @@ public class InviteUserTest extends BaseUITest {
                 .withRoleTitle(RandomString.getRandomString(5))
                 .build();
 
-        navigationStep.navigateToInvitesPage();
-        $(".btn-primary.me-2").shouldBe(visible);
-        $(".btn-primary.me-2").click();
-        inviteNewUserStep.inviteUser(newUser);
+        open("/workspace/invites?page=1");
+        invitesPage.getInviteNewMemberButton().shouldBe(visible).click();
+        inviteNewUserFormStep.inviteUser(newUser);
 
         $("[role='alert']").shouldBe(visible).shouldHave(text("Data is invalid."));
     }
 
-    //@Test
+    @Test
     public void defectTest() {
         UserBuilder newUser = new UserBuilder.Builder()
                 .withEmail("!@#%^&" + "@gmail.com")
                 .withRoleTitle(RandomString.getRandomString(5))
                 .build();
 
-        navigationStep.navigateToInvitesPage();
-        $(".btn-primary.me-2").shouldBe(visible);
-        $(".btn-primary.me-2").click();
-        inviteNewUserStep.inviteUser(newUser);
+        open("/workspace/invites?page=1");
+        invitesPage.getInviteNewMemberButton().shouldBe(visible).click();
+        inviteNewUserFormStep.inviteUser(newUser);
 
         $("[role='alert']").shouldBe(visible).shouldHave(text("User has been successfully invited"));
     }

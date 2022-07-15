@@ -4,7 +4,7 @@ import com.codeborne.selenide.SelenideElement;
 
 import static com.codeborne.selenide.Selenide.$;
 
-public class InviteNewUserPage {
+public class InviteNewUserFormPage {
 
     public SelenideElement inviteEmailInputLocator = $("#email");
     public SelenideElement inviteRoleInputLocator = $("#role_title");
