@@ -177,6 +177,7 @@ public class BookingTest extends BaseAPITest {
                 .then()
                 .statusCode(HttpStatus.SC_OK)
                 .log().body();
+
     }
 }
 
