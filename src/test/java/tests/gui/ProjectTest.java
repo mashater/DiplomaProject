@@ -2,27 +2,33 @@ package tests.gui;
 
 import baseEntities.BaseUITest;
 import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
 import models.ProjectBuilder;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 import pages.AddCasesAndSuitesPage;
 import steps.ProjectStep;
 import utils.RandomString;
+
 import java.io.File;
+
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
 
+@Epic("GUI Tests")
+@Feature("Positive Tests")
 public class ProjectTest extends BaseUITest {
     ProjectStep projectStep = new ProjectStep();
     AddCasesAndSuitesPage addCasesAndSuitesPage = new AddCasesAndSuitesPage();
 
     @Test(priority = 1)
-    @Description ("Create new project with correct boundary values")
+    @Description("Create new project with correct boundary values")
     public void createProjectTest() throws InterruptedException {
 
         ProjectBuilder newProject = new ProjectBuilder.Builder()
                 .withName(RandomString.getRandomString(3))
-                .withCode(RandomString.getRandomString(3))
+                .withCode(RandomString.getRandomString(2))
                 .withDescription(RandomString.getRandomString(3))
                 .build();
 
@@ -32,7 +38,7 @@ public class ProjectTest extends BaseUITest {
     }
 
     @Test(priority = 2)
-    @Description ("Create new project with incorrect boundary values")
+    @Description("Create new project with incorrect boundary values")
     public void incorrectBoundaryValuesProjectTest() throws InterruptedException {
 
         ProjectBuilder newProject = new ProjectBuilder.Builder()
@@ -47,7 +53,7 @@ public class ProjectTest extends BaseUITest {
     }
 
     @Test(priority = 3)
-    @Description ("Update project's name and load image")
+    @Description("Update project's name and load image")
     public void updateProjectTest() throws InterruptedException {
         open("/projects");
         $(By.xpath("//*[@class=\"project-row\"][last()]/td[last()]/div/a")).click();
@@ -63,7 +69,7 @@ public class ProjectTest extends BaseUITest {
     }
 
     @Test(priority = 4)
-    @Description ("Delete updated project")
+    @Description("Delete updated project")
     public void deleteProjectTest() throws InterruptedException {
         open("/projects");
         projectStep.deleteProject();

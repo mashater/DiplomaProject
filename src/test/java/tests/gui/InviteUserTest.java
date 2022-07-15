@@ -5,14 +5,19 @@ import baseEntities.BaseUITest;
 import static com.codeborne.selenide.Condition.*;
 
 import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
 import models.UserBuilder;
 import org.testng.annotations.Test;
 import pages.InvitesPage;
 import steps.InviteNewUserFormStep;
 import utils.RandomString;
+
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
+@Epic("GUI Tests")
+@Feature("Negative Tests")
 public class InviteUserTest extends BaseUITest {
     InvitesPage invitesPage = new InvitesPage();
     InviteNewUserFormStep inviteNewUserFormStep = new InviteNewUserFormStep();
@@ -47,8 +52,8 @@ public class InviteUserTest extends BaseUITest {
         $("[role='alert']").shouldBe(visible).shouldHave(text("Data is invalid."));
     }
 
-    //@Test
-    @Description ("Reproduce defect")
+    @Test
+    @Description("Reproduce defect")
     public void defectTest() {
         UserBuilder newUser = new UserBuilder.Builder()
                 .withEmail("!@#%^&" + "@gmail.com")
