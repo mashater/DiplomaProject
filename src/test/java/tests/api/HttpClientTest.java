@@ -1,5 +1,6 @@
 package tests.api;
 
+import io.qameta.allure.Feature;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 import org.apache.http.client.methods.HttpGet;
@@ -10,6 +11,7 @@ import org.testng.annotations.Test;
 
 import java.io.IOException;
 
+@Feature("Setting test")
 public class HttpClientTest {
 
     @Test

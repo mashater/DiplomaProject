@@ -2,7 +2,7 @@ package tests.api;
 
 import baseEntities.BaseAPITest;
 import configurations.Endpoints;
-import io.qameta.allure.Feature;
+import io.qameta.allure.*;
 import io.restassured.http.ContentType;
 import org.apache.http.HttpStatus;
 import org.testng.Assert;
@@ -10,10 +10,13 @@ import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;
 
+@Epic("Booking example")
+@Feature("NFE and AFE booking test")
 public class BookingTest extends BaseAPITest {
     public int bookingid;
 
-    @Feature("NFE test")
+    @Story("NFE test")
+    @Severity(SeverityLevel.CRITICAL)
     @Test
     public void createBookingTest() {
 
@@ -41,7 +44,7 @@ public class BookingTest extends BaseAPITest {
         Assert.assertEquals(expectedBooking.getAdditionalneeds(), "Breakfast");
     }
 
-    @Feature("NFE test")
+    @Story("NFE test")
     @Test(dependsOnMethods = "createBookingTest")
     public void updateBookingTest() {
         given()
@@ -69,7 +72,7 @@ public class BookingTest extends BaseAPITest {
         Assert.assertEquals(updatedBooking.getLastname(), "Brown");
     }
 
-    @Feature("NFE test")
+    @Story("NFE test")
     @Test
     public void partialUpdateBookingTest() {
 
@@ -91,7 +94,7 @@ public class BookingTest extends BaseAPITest {
         Assert.assertEquals(updatedBooking.getLastname(), "Brown");
     }
 
-    @Feature("NFE test")
+    @Story("NFE test")
     @Test(dependsOnMethods = "updateBookingTest")
     public void deleteBookingTest() {
 
@@ -106,7 +109,7 @@ public class BookingTest extends BaseAPITest {
                 .log().body();
     }
 
-    @Feature("NFE test")
+    @Story("NFE test")
     @Test(dependsOnMethods = "deleteBookingTest")
     public void notFoundBookingTest() {
 
@@ -121,7 +124,7 @@ public class BookingTest extends BaseAPITest {
                 .log().body();
     }
 
-    @Feature("AFE test")
+    @Story("AFE test")
     @Test
     public void negativeUpdateBookingTest() {
 
@@ -150,5 +153,31 @@ public class BookingTest extends BaseAPITest {
         Assert.assertEquals(updatedBooking.getLastname(), "Next");
     }
 
+    @Story("AFE test")
+    @Test
+    public void negativeInvalidBodyUpdateBookingTest() {
+
+        given()
+                .pathParams("bookingid", bookingid)
+                .cookie("token", token)
+                .contentType(ContentType.JSON)
+                .body(String.format("{\n" +
+                        "  \"firstname\" : \"Andrey\",\n" +
+                        "  \"123\" : \"Next\",\n" +
+                        "  \"totalprice\" : 111,\n" +
+                        "  \"depositpaid\" : true,\n" +
+                        "  \"bookingdates\" : {\n" +
+                        "    \"checkin\" : \"2018-01-01\",\n" +
+                        "    \"checkout\" : \"2019-01-01\"\n" +
+                        "  },\n" +
+                        "  \"additionalneeds\" : \"Breakfast\"\n" +
+                        "}"))
+                .when()
+                .put(Endpoints.PUT_UPDATE_BOOKING)
+                .then()
+                .statusCode(HttpStatus.SC_OK)
+                .log().body();
+
+    }
 }
 

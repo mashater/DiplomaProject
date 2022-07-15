@@ -1,7 +1,6 @@
 package baseEntities;
 
 import configurations.Endpoints;
-import helpers.BookingHelper;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import models.Booking;
@@ -15,7 +14,6 @@ import static io.restassured.RestAssured.given;
 public class BaseAPITest {
 
     public Booking expectedBooking;
-    public BookingHelper bookingHelper;
     public Booking updatedBooking;
     public String token;
 
@@ -54,6 +52,5 @@ public class BaseAPITest {
                 .additionalneeds("Breakfast")
                 .build();
 
-        bookingHelper = new BookingHelper();
     }
 }
