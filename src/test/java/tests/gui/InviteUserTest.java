@@ -3,6 +3,8 @@ package tests.gui;
 import baseEntities.BaseUITest;
 
 import static com.codeborne.selenide.Condition.*;
+
+import io.qameta.allure.Description;
 import models.UserBuilder;
 import org.testng.annotations.Test;
 import pages.InvitesPage;
@@ -16,6 +18,7 @@ public class InviteUserTest extends BaseUITest {
     InviteNewUserFormStep inviteNewUserFormStep = new InviteNewUserFormStep();
 
     @Test
+    @Description("Invite new user with exceeding email input data")
     public void oversizedInputDataTest() {
         UserBuilder newUser = new UserBuilder.Builder()
                 .withEmail(RandomString.getRandomString(255) + "gmail.com")
@@ -30,6 +33,7 @@ public class InviteUserTest extends BaseUITest {
     }
 
     @Test
+    @Description("Invite new user with invalid email input data")
     public void incorrectInputDataTest() {
         UserBuilder newUser = new UserBuilder.Builder()
                 .withEmail("!@#%^&" + "@gmail.com")
@@ -44,6 +48,7 @@ public class InviteUserTest extends BaseUITest {
     }
 
     //@Test
+    @Description ("Reproduce defect")
     public void defectTest() {
         UserBuilder newUser = new UserBuilder.Builder()
                 .withEmail("!@#%^&" + "@gmail.com")

@@ -2,7 +2,6 @@ package baseEntities;
 
 import com.codeborne.selenide.Configuration;
 import configurations.ReadProperties;
-import org.openqa.selenium.PageLoadStrategy;
 import org.testng.annotations.*;
 import steps.*;
 
@@ -18,7 +17,7 @@ public class BaseUITest {
         Configuration.browser = ReadProperties.browserName();
         Configuration.browserSize = "1920x1080";
         Configuration.fastSetValue = false;
-        Configuration.pageLoadStrategy = PageLoadStrategy.EAGER.toString();
+        //Configuration.pageLoadStrategy = PageLoadStrategy.EAGER.toString();
 
         open("/");
         loginStep = new LoginStep();

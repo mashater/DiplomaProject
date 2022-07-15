@@ -6,13 +6,9 @@ import static com.codeborne.selenide.Selenide.$;
 
 public class AddCasesAndSuitesPage {
 
-    public SelenideElement noSuitesAndCasesMassageLocator = $(".no-project");
     public SelenideElement createSuiteButtonLocator = $("#create-suite-button");
     public SelenideElement createCaseButtonLocator = $("#create-case-button");
 
-    public SelenideElement getNoSuitesAndCasesMassage() {
-        return noSuitesAndCasesMassageLocator;
-    }
 
     public SelenideElement getCreateSuiteButton() {
         return createSuiteButtonLocator;
