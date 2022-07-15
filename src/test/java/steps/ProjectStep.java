@@ -10,7 +10,6 @@ import static com.codeborne.selenide.Selenide.open;
 
 public class ProjectStep extends BaseUIStep {
 
-
     public AllProjectsPage addProject(ProjectBuilder newProject){
 
         allProjectsPage.getCreateNewProjectButton().click();

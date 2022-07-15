@@ -5,7 +5,6 @@ public class ProjectBuilder {
     private String code;
     private String description;
 
-
     public static class Builder {
         private ProjectBuilder newProject;
 

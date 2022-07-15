@@ -12,7 +12,6 @@ public class BaseUIStep {
     protected InviteNewUserFormPage inviteNewUserFormPage;
     protected InvitesPage invitesPage;
 
-
     public BaseUIStep() {
         loginPage = new LoginPage();
         allProjectsPage = new AllProjectsPage();

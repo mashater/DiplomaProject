@@ -12,7 +12,6 @@ public class NavigationStep extends BaseUIStep {
         return workspacePage;
     }
 
-
     public InvitesPage navigateToInvitesPage() {
 
         invitesPage.openPageByUrl();

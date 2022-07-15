@@ -2,9 +2,7 @@ package baseEntities;
 
 import com.codeborne.selenide.Configuration;
 import configurations.ReadProperties;
-import org.openqa.selenium.MutableCapabilities;
 import org.openqa.selenium.PageLoadStrategy;
-import org.testng.ITestResult;
 import org.testng.annotations.*;
 import steps.*;
 
@@ -22,7 +20,7 @@ public class BaseUITest {
         Configuration.fastSetValue = false;
         Configuration.pageLoadStrategy = PageLoadStrategy.EAGER.toString();
 
-        open("/login");
+        open("/");
         loginStep = new LoginStep();
         loginStep.successLogin();
     }

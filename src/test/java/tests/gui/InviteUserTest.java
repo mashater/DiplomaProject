@@ -3,13 +3,11 @@ package tests.gui;
 import baseEntities.BaseUITest;
 
 import static com.codeborne.selenide.Condition.*;
-
 import models.UserBuilder;
 import org.testng.annotations.Test;
 import pages.InvitesPage;
 import steps.InviteNewUserFormStep;
 import utils.RandomString;
-
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
@@ -45,7 +43,7 @@ public class InviteUserTest extends BaseUITest {
         $("[role='alert']").shouldBe(visible).shouldHave(text("Data is invalid."));
     }
 
-    @Test
+    //@Test
     public void defectTest() {
         UserBuilder newUser = new UserBuilder.Builder()
                 .withEmail("!@#%^&" + "@gmail.com")

@@ -6,9 +6,7 @@ import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 import steps.ProjectStep;
 import utils.RandomString;
-
 import java.io.File;
-
 import static com.codeborne.selenide.CollectionCondition.size;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
@@ -25,8 +23,9 @@ public class ProjectTest extends BaseUITest {
                 .withDescription(RandomString.getRandomString(3))
                 .build();
 
+        open("/projects");
         projectStep.addProject(newProject);
-        $(".no-project.mt-4").shouldBe(visible).shouldHave(text("Looks like you don’t have any "));
+        $("#create-case-button").shouldBe(visible).shouldHave(text(" Case"));
     }
 
     @Test(priority = 2)
@@ -58,9 +57,10 @@ public class ProjectTest extends BaseUITest {
 
     @Test(priority = 4)
     public void deleteProjectTest() throws InterruptedException {
-        open("https://app.qase.io/projects");
+        open("/projects");
         projectStep.deleteProject();
-        $$(".project-row")// массив элемента
-                .shouldHave(size(1));
+        $$(".project-row")
+                .find(text("Updated"))
+                .shouldNotBe(visible);
     }
 }
