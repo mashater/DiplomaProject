@@ -1,5 +1,6 @@
 package tests.api;
 
+import io.qameta.allure.Feature;
 import io.restassured.RestAssured;
 import io.restassured.http.Method;
 import io.restassured.response.Response;
@@ -10,6 +11,7 @@ import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;
 
+@Feature("Setting test")
 public class RequestInTest {
 
     @Test
@@ -38,6 +40,7 @@ public class RequestInTest {
         System.out.println("Response: " + responseBody);
     }
 
+    @Feature("Setting test")
     @Test
     public void simpleShortApiTest() {
         // Setup RestAssured
