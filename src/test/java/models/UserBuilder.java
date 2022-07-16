@@ -31,6 +31,7 @@ public class UserBuilder {
             return newUser;
         }
     }
+
     public String getEmail() {
         return email;
     }

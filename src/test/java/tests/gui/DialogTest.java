@@ -21,6 +21,5 @@ public class DialogTest extends BaseUITest {
         $(By.xpath("//h1[text()='Upgrade your subscription']")).shouldBe(visible);
         $(By.xpath("//*[text()= 'Not now']")).click();
         $(By.xpath("//h1[text()='Upgrade your subscription']")).shouldNotBe(visible);
-
     }
 }

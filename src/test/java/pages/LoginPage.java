@@ -1,6 +1,7 @@
 package pages;
 
 import com.codeborne.selenide.SelenideElement;
+
 import static com.codeborne.selenide.Selenide.$;
 
 public class LoginPage {
@@ -12,9 +13,11 @@ public class LoginPage {
     public SelenideElement getEmailInput() {
         return emailInputLocator;
     }
+
     public SelenideElement getPasswordInput() {
         return passwordInputLocator;
     }
+
     public SelenideElement getLoginButton() {
         return loginButtonLocator;
     }
