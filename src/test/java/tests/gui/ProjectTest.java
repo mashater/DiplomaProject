@@ -73,8 +73,9 @@ public class ProjectTest extends BaseUITest {
     public void deleteProjectTest() throws InterruptedException {
         open("/projects");
         projectStep.deleteProject();
-        $$(".project-row")
-                .find(text("Updated"))
+        $(".table.projects-table")
+                .shouldBe(visible);
+        $(By.xpath("//*[text()='Updated']"))
                 .shouldNotBe(visible);
     }
 }
