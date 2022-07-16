@@ -6,7 +6,7 @@ import pages.InviteNewUserFormPage;
 
 public class InviteNewUserFormStep extends BaseUIStep {
 
-    public InviteNewUserFormPage inviteUser (UserBuilder newUser){
+    public InviteNewUserFormPage inviteUser(UserBuilder newUser) {
 
         inviteNewUserFormPage.getInviteEmailInput().sendKeys(newUser.getEmail());
         inviteNewUserFormPage.getInviteRoleInput().sendKeys(newUser.getRoleTitle());

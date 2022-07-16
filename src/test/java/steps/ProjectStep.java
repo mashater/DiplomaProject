@@ -10,7 +10,7 @@ import static com.codeborne.selenide.Selenide.open;
 
 public class ProjectStep extends BaseUIStep {
 
-    public AllProjectsPage addProject(ProjectBuilder newProject){
+    public AddCasesAndSuitesPage addProject(ProjectBuilder newProject) {
 
         allProjectsPage.getCreateNewProjectButton().click();
         addProjectPage.getProjectNameInput().sendKeys(newProject.getName());
@@ -19,10 +19,10 @@ public class ProjectStep extends BaseUIStep {
         addProjectPage.getDescriptionInput().sendKeys(newProject.getDescription());
         addProjectPage.getCreateProjectButton().click();
 
-        return allProjectsPage;
+        return addCasesAndSuitesPage;
     }
 
-    public AddProjectPage addProjectWithIncorrectData(ProjectBuilder newProject){
+    public AddProjectPage addProjectWithIncorrectData(ProjectBuilder newProject) {
 
         allProjectsPage.getCreateNewProjectButton().click();
         addProjectPage.getProjectNameInput().sendKeys(newProject.getName());
@@ -33,7 +33,7 @@ public class ProjectStep extends BaseUIStep {
         return addProjectPage;
     }
 
-    public AllProjectsPage deleteProject(){
+    public AllProjectsPage deleteProject() {
 
         $(By.xpath("//*[@class=\"project-row\"][last()]/td[last()]/div/a")).click();
         $(".dropdown-menu-end.show>div:last-child>a").click();
