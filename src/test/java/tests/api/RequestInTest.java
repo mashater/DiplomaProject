@@ -11,7 +11,7 @@ import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;
 
-@Feature("Setting test")
+@Feature("Setting API test")
 public class RequestInTest {
 
     @Test
@@ -40,7 +40,6 @@ public class RequestInTest {
         System.out.println("Response: " + responseBody);
     }
 
-    @Feature("Setting test")
     @Test
     public void simpleShortApiTest() {
         // Setup RestAssured

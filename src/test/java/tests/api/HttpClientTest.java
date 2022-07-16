@@ -11,7 +11,7 @@ import org.testng.annotations.Test;
 
 import java.io.IOException;
 
-@Feature("Setting test")
+@Feature("Setting API test")
 public class HttpClientTest {
 
     @Test
@@ -29,6 +29,5 @@ public class HttpClientTest {
 
         Assert.assertEquals(httpResponse.getStatusLine().getStatusCode(),
                 HttpStatus.SC_OK);
-
     }
 }
