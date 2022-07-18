@@ -1,7 +1,9 @@
 package baseEntities;
 
 import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.logevents.SelenideLogger;
 import configurations.ReadProperties;
+import io.qameta.allure.selenide.AllureSelenide;
 import org.testng.annotations.*;
 import steps.*;
 
@@ -18,6 +20,7 @@ public class BaseUITest {
         Configuration.browserSize = "1920x1080";
         Configuration.fastSetValue = false;
         //Configuration.pageLoadStrategy = PageLoadStrategy.EAGER.toString();
+        SelenideLogger.addListener("Selenide", new AllureSelenide());
 
         open("/");
         loginStep = new LoginStep();

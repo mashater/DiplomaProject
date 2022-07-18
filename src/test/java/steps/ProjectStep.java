@@ -36,7 +36,7 @@ public class ProjectStep extends BaseUIStep {
 
         $(By.xpath("//*[@class=\"project-row\"][last()]/td[last()]/div/a")).click();
         $(".dropdown-menu-end.show>div:last-child>a").click();
-        $(By.xpath("//*[@class= 'btn btn-cancel']")).click();
+        $((".btn.btn-cancel")).click();
         return allProjectsPage;
     }
 }
