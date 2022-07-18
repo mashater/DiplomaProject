@@ -33,6 +33,7 @@ public class ProjectTest extends BaseUITest {
                 .build();
 
         open("/projects");
+        $(By.xpath("//h1[text()='Projects']")).shouldBe(visible);
         projectStep.addProject(newProject);
         addCasesAndSuitesPage.getCreateCaseButton().shouldBe(visible).shouldHave(text(" Case"));
     }
@@ -48,6 +49,7 @@ public class ProjectTest extends BaseUITest {
                 .build();
 
         open("/projects");
+        $(By.xpath("//h1[text()='Projects']")).shouldBe(visible);
         projectStep.addProjectWithIncorrectData(newProject);
         $(".form-control-feedback").shouldBe(visible).shouldHave(text("The code must be at least 2 characters."));
     }
@@ -63,6 +65,7 @@ public class ProjectTest extends BaseUITest {
         $("input#fileupload").sendKeys(new File("src/test/resources/updated-stamp.jpg").getAbsolutePath());
         $("#update").click();
         open("/projects");
+        $(By.xpath("//h1[text()='Projects']")).shouldBe(visible);
         $$(".project-row")
                 .find(text("Updated"))
                 .shouldBe(visible);
@@ -72,6 +75,7 @@ public class ProjectTest extends BaseUITest {
     @Description("Delete updated project")
     public void deleteProjectTest() throws InterruptedException {
         open("/projects");
+        $(By.xpath("//h1[text()='Projects']")).shouldBe(visible);
         projectStep.deleteProject();
         $(".table.projects-table")
                 .shouldBe(visible);

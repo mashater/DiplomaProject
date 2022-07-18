@@ -8,6 +8,7 @@ import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
 import models.UserBuilder;
+import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 import pages.InvitesPage;
 import steps.InviteNewUserFormStep;
@@ -31,6 +32,7 @@ public class InviteUserTest extends BaseUITest {
                 .build();
 
         open("/workspace/invites?page=1");
+        $(By.xpath("//h1[text()='Invites']")).shouldBe(visible);
         invitesPage.getInviteNewMemberButton().shouldBe(visible).click();
         inviteNewUserFormStep.inviteUser(newUser);
 
@@ -46,6 +48,7 @@ public class InviteUserTest extends BaseUITest {
                 .build();
 
         open("/workspace/invites?page=1");
+        $(By.xpath("//h1[text()='Invites']")).shouldBe(visible);
         invitesPage.getInviteNewMemberButton().shouldBe(visible).click();
         inviteNewUserFormStep.inviteUser(newUser);
 
@@ -61,6 +64,7 @@ public class InviteUserTest extends BaseUITest {
                 .build();
 
         open("/workspace/invites?page=1");
+        $(By.xpath("//h1[text()='Invites']")).shouldBe(visible);
         invitesPage.getInviteNewMemberButton().shouldBe(visible).click();
         inviteNewUserFormStep.inviteUser(newUser);
 
